@@ -1,0 +1,43 @@
+name: Master
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  test:
+    name: Build, Test & Build docker image
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    env:
+      SBT_COMMAND: runUsingCommands \"\"\"5 5\\\n1 2 N\\\nLFLFLFLFF\\\n3 3 E\\\nFFRFFRFRRF\"\"\"
+    steps:
+      - name: Cache SBT ivy cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.ivy2/cache
+          key: ${{ runner.os }}-sbt-ivy-cache-${{ hashFiles('dependencies.sbt') }}
+      - name: Cache SBT
+        uses: actions/cache@v2
+        with:
+          path: ~/.sbt
+          key: ${{ runner.os }}-sbt-${{ hashFiles('dependencies.sbt') }}
+      - uses: actions/checkout@v2
+      - uses: olafurpg/setup-scala@v7
+        with:
+          java-version: graalvm@
+      - name: Run Unit Test
+        run: sbt coverage test coverageReport
+      - name: Run Integration Tests
+        run: sbt coverage it:test coverageReport
+      - name: Generate coverage report
+        run: sbt coverageReport
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          fail_ci_if_error: true
+      - name: Build a container and run it
+        run: docker-compose up --build --abort-on-container-exit --exit-code-from lawn-mower

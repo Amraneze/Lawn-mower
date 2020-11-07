@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  lawn-mower:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        SBT_FILE: ${SBT_FILE:-""}
+    container_name: lawn-mower
+    environment:
+      - SBT_COMMAND=${SBT_COMMAND:-""}

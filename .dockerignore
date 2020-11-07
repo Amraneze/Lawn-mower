@@ -1,0 +1,25 @@
+# .dockerignore should be in the same folder as Dockerfile, check the https://github.com/docker/cli/issues/1308
+
+# I did not add .git because I'm getting this error while running sbt
+# fatal: Not a git repository (or any of the parent directories): .git
+# need to generate a token because the repository is private.
+
+### ignore git folder and gitignore ###
+.git
+.gitignore
+
+### ignore the project src ###
+docs
+README.md
+.scalafmt.conf
+
+### CI ###
+.github
+
+### Intellij ###
+.idea
+
+### SBT ###
+dist
+target
+project/target

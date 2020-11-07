@@ -1,0 +1,33 @@
+name: Branch
+on:
+  push:
+    branches-ignore:
+      - master
+  pull_request:
+    branches-ignore:
+      - master
+
+jobs:
+  test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    if: "!contains(github.event.head_commit.message, 'skip ci')"
+    steps:
+      - name: Cache SBT ivy cache
+        uses: actions/cache@v2
+        with:
+          path: ~/.ivy2/cache
+          key: ${{ runner.os }}-sbt-ivy-cache-${{ hashFiles('dependencies.sbt') }}
+      - name: Cache SBT
+        uses: actions/cache@v2
+        with:
+          path: ~/.sbt
+          key: ${{ runner.os }}-sbt-${{ hashFiles('dependencies.sbt') }}
+      - uses: actions/checkout@v2
+      - uses: olafurpg/setup-scala@v7
+        with:
+          java-version: graalvm@
+      - name: Run Unit Test
+        run: sbt test
+      - name: Run Integration Tests
+        run: sbt it:test

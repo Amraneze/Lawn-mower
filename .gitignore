@@ -1,0 +1,12 @@
+# Scala
+target/
+project/target
+*.class
+
+# IntelliJ specific
+*.iml
+.idea
+out
+
+# Slf4jLogger
+logs
