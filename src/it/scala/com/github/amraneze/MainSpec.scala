@@ -54,9 +54,10 @@ class MainSpec extends Helper {
     val caught = intercept[IOException] {
       Main.startMowing(argsErrorFile)
     }
-    assert(
-      caught.getMessage === s"${argsErrorFile.tail.head} (The system cannot find the file specified)"
-    )
+    caught.getMessage should include (s"${argsErrorFile.tail.head}")
+    // We have two different message for the same exceptions
+    // The system cannot find the file specified using JDK on a windows 10
+    // No such file or directory on a GraalVM
   }
   it should "throw an exception if the lawn is malformed" in {
     val argsLawnSurfaceError = errors(Symbol("argsLawnSurfaceError"))
