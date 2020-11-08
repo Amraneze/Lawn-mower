@@ -54,7 +54,7 @@ class MainSpec extends Helper {
     val caught = intercept[IOException] {
       Main.startMowing(argsErrorFile)
     }
-    caught.getMessage should include (s"${argsErrorFile.tail.head}")
+    caught.getMessage should include(s"${argsErrorFile.tail.head}")
     // We have two different message for the same exceptions
     // The system cannot find the file specified using JDK on a windows 10
     // No such file or directory on a GraalVM

@@ -104,8 +104,8 @@ run --commands "5 5\\n1 2 N\\nLFLFLFLFF\\n3 3 E\\nFFRFFRFRRF"
 ```
 And you will get this result displayed in your terminal
 ```
-Mower 0 has finished it's job and its final position is (Position(1,3),N)
-Mower 1 has finished it's job and its final position is (Position(5,1),E)
+1 3 N
+5 1 E
 ```
 
 ##### with file path as argument
@@ -124,13 +124,9 @@ run --file /tmp/mower-commands.txt
 ```
 And you will get this result displayed in your terminal
 ```
-Mower 0 has finished it's job and its final position is (Position(1,3),N)
-Mower 1 has finished it's job and its final position is (Position(5,1),E)
+1 3 N
+5 1 E
 ```
-
->Note: There are also tasks to run the project and are used the same way, just you need to replace `sbt run` with `sbt runUsingCommands` if you want to run it with commands or `sbt runUsingFilePath`.
->example: from sbt shell `runUsingCommands """5 5\\n1 2 N\\nLFLFLFLFF\\n3 3 E\\nFFRFFRFRRF"""` or `runUsingFilePath /tmp/mower-commands.txt`
-
 
 #### Run the test cases
 ##### Unit test

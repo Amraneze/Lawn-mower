@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     if: "!contains(github.event.head_commit.message, 'skip ci')"
     env:
-      SBT_COMMAND: runUsingCommands \"\"\"5 5\\\n1 2 N\\\nLFLFLFLFF\\\n3 3 E\\\nFFRFFRFRRF\"\"\"
+      SBT_COMMAND: runUsingCommands """5 5\\n1 2 N\\nLFLFLFLFF\\n3 3 E\\nFFRFFRFRRF"""
     steps:
       - name: Cache SBT ivy cache
         uses: actions/cache@v2
@@ -29,15 +29,12 @@ jobs:
       - uses: olafurpg/setup-scala@v7
         with:
           java-version: graalvm@
-      - name: Run Unit Test
-        run: sbt coverage test coverageReport
-      - name: Run Integration Tests
-        run: sbt coverage it:test coverageReport
-      - name: Generate coverage report
-        run: sbt coverageReport
+      - name: Run Tests with coverage
+        run: sbt clean coverage test it:test coverageReport
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
+          token: ${{ secrets.CODECOV_TOKEN }}
           fail_ci_if_error: true
       - name: Build a container and run it
         run: docker-compose up --build --abort-on-container-exit --exit-code-from lawn-mower

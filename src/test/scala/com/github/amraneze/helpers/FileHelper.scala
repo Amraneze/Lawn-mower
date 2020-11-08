@@ -3,7 +3,7 @@ package com.github.amraneze.helpers
 import java.io.{ File, FileNotFoundException, PrintWriter }
 
 object FileHelper {
-  def createTempFile(text: String,
+  def writeToTempFile(text: String,
                      prefix: Option[String] = None,
                      suffix: Option[String] = None): File = {
     val tempFile =

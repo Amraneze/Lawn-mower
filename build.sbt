@@ -10,14 +10,13 @@ lazy val root = project
 		version := "0.0.1",
 		Defaults.itSettings,
 		mainClass in (Compile, run) := Some("com.github.amraneze.Main"),
-		scalacOptions ++= Seq("-Xlint", "-deprecation", "-feature"),
-		libraryDependencies ++= Seq(
-			ScalaTest.core.scala.value,
-		).map(_ % "it, test"),
+		libraryDependencies ++= testDependencies(scalaTest.value),
 		Seq(
 			organization := "ContentSquare",
 			scalaVersion := Scala.version
 		),
+		IntegrationTest / dependencyClasspath :=
+			(IntegrationTest / dependencyClasspath).value ++ (Test / exportedProducts).value
 	)
 
 
