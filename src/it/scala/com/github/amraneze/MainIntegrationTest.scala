@@ -6,7 +6,7 @@ import com.github.amraneze.data.Helper
 import com.github.amraneze.entities.Movement.Coordination
 import org.scalatest.Inside.inside
 
-class MainSpec extends Helper {
+class MainIntegrationTest extends Helper {
 
   it should "start mower and print the final positions" in {
     val expectedResult = validData(Symbol("anotherMowerWithResult"))

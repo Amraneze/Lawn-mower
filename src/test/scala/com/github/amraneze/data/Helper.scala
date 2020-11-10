@@ -23,6 +23,7 @@ trait Helper extends AnyFlatSpecLike with Matchers {
                                               Option("commands-"),
                                               Option(".txt"))
   val command: String = """5 5\n1 2 N\nLFLFLFLFF\n3 3 E\nFFRFFRFRRF"""
+  val randomFilePath: String = s"${randomStringFromCharList(10, orientations)}.${randomStringFromCharList(3, orientations)}".toLowerCase
 
   val args: Vector[String] =
     Vector("--commands", command)
