@@ -1,6 +1,6 @@
 # Lawn Mower
 
-[![codecov](https://codecov.io/gh/Amraneze/lawn-mower/branch/master/graph/badge.svg)](https://codecov.io/gh/Amraneze/lawn-mower)
+[![codecov](https://codecov.io/gh/Amraneze/lawn-mower/branch/master/graph/badge.svg?token=ngu6kyQPta)](https://codecov.io/gh/Amraneze/lawn-mower)
 ![Lawn-mower-master](https://github.com/Amraneze/lawn-mower/workflows/Master/badge.svg)
 
 A program to mow your lawn with your own commands.
