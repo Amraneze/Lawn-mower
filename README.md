@@ -1,7 +1,7 @@
 # Lawn Mower
 
 [![codecov](https://codecov.io/gh/Amraneze/lawn-mower/branch/master/graph/badge.svg?token=ngu6kyQPta)](https://codecov.io/gh/Amraneze/lawn-mower)
-![Lawn-mower-master](https://github.com/Amraneze/lawn-mower/workflows/Master/badge.svg)
+![Master](https://github.com/Amraneze/lawn-mower/workflows/Master/badge.svg?branch=master)
 
 A program to mow your lawn with your own commands.
 
@@ -113,6 +113,17 @@ And you will get this result displayed in your terminal
 sbt run --file filepath
 ```
 >Note: If you use sbt run without argument you will have an exception thrown with an example of the command that needs to be run with the App.
+>Note: The file format should be like this:
+```
+5 5
+1 2 N
+LFLFLFLFF
+3 3 E
+FFRFFRFRRF
+4 5 W
+LFLFRLFLRLF
+...
+```
 
 For example you can try:
 ```
@@ -147,7 +158,6 @@ After installing Docker and you want to run the project you can just run the fol
 you can use this bash script to take care of running docker containers:
 
 #### providing commands as a string
->Note: Do not use, it's still in progress, maybe I need to change the way I parsed the string
 ```
 ./run.sh -commands "5 5\\\n1 2 N\\\nLFLFLFLFF\\\n3 3 E\\\nFFRFFRFRRF"
 ```
